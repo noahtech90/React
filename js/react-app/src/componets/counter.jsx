@@ -18,7 +18,6 @@ class Counter extends Component {
          display: 'block',
          marginTop: 200,
          marginLeft: '40%'
-
      }
 
     renderTags() {
@@ -27,21 +26,17 @@ class Counter extends Component {
        return <ul>{ this.state.tags.map(tag => <li key={tag}>{ tag }</li>) }</ul>; 
     }
 
-    handleIncrement = () => {
-        this.setState(count++)
+    handleIncrement = (product) => {
+        console.log(product)
+        this.setState({count: this.state.count + 1})
     }
 
     render() { 
-
         return (
         <div>
             { this.state.tags.length === 0 && 'Please create a new tag'}
-            <span style={ this.dateStyles }>{this.formatDate()}</span>
             <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-            <button onClick={this.handleIncrement} className="btn btn-secondary btn-sm">Increment</button>
-            <img style={this.imgStyles} src={this.state.imageUrl} alt="" />
-            { this.renderTags() }
-
+            <button onClick={() => {this.handleIncrement("wut")}} className="btn btn-secondary btn-sm">Increment</button>
         </div>);
     }
 
