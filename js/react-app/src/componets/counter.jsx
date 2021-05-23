@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Counter extends Component {
     state = {
-        count: 0,
+        count: this.props.value,
         today: new Date().toLocaleDateString(),
         imageUrl: "https://picsum.photos/200",
         tags: ["tag1", "tag2", "tag3"]
@@ -26,14 +26,15 @@ class Counter extends Component {
        return <ul>{ this.state.tags.map(tag => <li key={tag}>{ tag }</li>) }</ul>; 
     }
 
-    handleIncrement = (product) => {
-        console.log(product)
+    handleIncrement = () => {
         this.setState({count: this.state.count + 1})
     }
 
     render() { 
+        console.log('props', this.props)
         return (
         <div>
+            {this.props.children}
             { this.state.tags.length === 0 && 'Please create a new tag'}
             <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
             <button onClick={() => {this.handleIncrement("wut")}} className="btn btn-secondary btn-sm">Increment</button>
