@@ -10,9 +10,28 @@ class Counters extends Component {
             { id: 4, value: 0}
         ]
       }
+
+    handleIncrement = counter => {
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = {...counter};
+        counters[index].value++;
+        this.setState({counters});
+    }
+
     handleDelete = (counterId) => {
         const counters = this.state.counters.filter(c => c.id !== counterId)
         this.setState({ counters })
+    }
+
+    handleAdd = () => {
+        const counters  = [...this.state.counters];
+        const length = counters.length
+        let newObj = {}
+        newObj['id'] =  length + 1
+        newObj['value'] = 0
+        counters.push(newObj)
+        this.setState({counters})
     }
 
     handleReset = () => {
@@ -25,11 +44,15 @@ class Counters extends Component {
 
     render() { 
         return (
+        
+            <div className="container">
+                <h1 className="title">Pick Whatcha Want</h1>
         <div>
             <button onClick={this.handleReset} className="btn btn-primary btn-small m-2">Reset</button>
          {this.state.counters.map(counter => 
-         <Counter key={counter.id} onDelete={this.handleDelete} counter={counter}>
+         <Counter key={counter.id} onDelete={this.handleDelete} onIncrement={this.handleIncrement} onAdd={this.handleAdd} counter={counter}>
          </Counter>)}
+        </div>
         </div>);
     }
 }
