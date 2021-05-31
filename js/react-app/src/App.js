@@ -6,9 +6,9 @@ import React, { Component } from 'react';
 class App extends Component {
   state = {
     counters: [
-        { id: 1, value: 4},
+        { id: 1, value: 0},
         { id: 2, value: 0},
-        { id: 3, value: 1},
+        { id: 3, value: 0},
         { id: 4, value: 0}
     ]
   }
@@ -29,7 +29,7 @@ handleDelete = (counterId) => {
 handleAdd = () => {
     const counters  = [...this.state.counters];
     let newObj = {}
-    newObj['id'] =  counters.length + 1
+    newObj['id'] =  counters[counters.length - 1].id + 1
     newObj['value'] = 0
     counters.push(newObj)
     this.setState({counters})
