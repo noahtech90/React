@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-class NavBar extends Component {
+// Stateless Functional Componet
+
+const Navbar = () => {
     render() { 
         return ( <nav className="navbar navbar-light bg-light">
             <a href="#" className="navbar-brand">Navbar <span className="badge badge-pill badge-secondary">{this.props.totalCounters}</span>
@@ -8,6 +10,10 @@ class NavBar extends Component {
 
         </nav> );
     }
+}
+
+class NavBar extends Component {
+
 }
  
 export default NavBar;
